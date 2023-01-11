@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 volumes:
   employee_postgres_data:
@@ -28,3 +28,16 @@ services:
       - "8089:8089"
     depends_on:
       - postgres-employee
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_employee
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com #the username to login to pgadmin
+      PGADMIN_DEFAULT_PASSWORD: admin # the password to login to pgadmin
+    ports:
+      - "5050:80"
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json # preconfigured servers/connections
+    depends_on:
+      - "postgres-employee"
