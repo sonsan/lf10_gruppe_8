@@ -1,8 +1,4 @@
-<div style="display: flex; flex-direction: row">
-  <button mat-flat-button color="primary" (click)="createEmployee()">
-    Create Employee
-  </button>
-
+<div class="search-container">
   <form class="search-form">
     <mat-form-field class="search-full-width">
       <input
@@ -15,6 +11,9 @@
     </mat-form-field>
   </form>
 </div>
+<button mat-flat-button color="primary" (click)="createEmployee()">
+  Create Employee
+</button>
 <table
   mat-table
   [dataSource]="dataSource"
