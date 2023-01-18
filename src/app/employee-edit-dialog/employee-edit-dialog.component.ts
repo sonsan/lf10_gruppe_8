@@ -8,7 +8,7 @@ import {COMMA, ENTER} from "@angular/cdk/keycodes";
 @Component({
   selector: 'app-employee-edit-dialog',
   templateUrl: './employee-edit-dialog.component.html',
-  styleUrls: ['./employee-edit-dialog.component.css']
+  styleUrls: ['./employee-edit-dialog.component.scss']
 })
 export class EmployeeEditDialogComponent {
   employee: Employee;

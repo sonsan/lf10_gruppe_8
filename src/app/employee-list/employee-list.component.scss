@@ -1,0 +1,22 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.search-container > form {
+  width: 50vw;
+}
+.search-container > form > .mat-mdc-form-field {
+  width: 100%;
+}
+
+.table-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  .create-btn {
+    width: 150px;
+  }
+}
