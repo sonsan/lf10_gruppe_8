@@ -68,7 +68,6 @@ export class EmployeeListComponent implements OnInit {
 
   editEmployee(employee: Employee) {
     console.log(`${JSON.stringify(employee)}`);
-    this.dialog.open(EmployeeEditDialogComponent, {data: employee});
     this.dialog.open(EmployeeEditDialogComponent, { data: employee });
   }
 

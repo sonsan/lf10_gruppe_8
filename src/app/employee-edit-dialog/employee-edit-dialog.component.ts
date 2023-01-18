@@ -26,8 +26,8 @@ export class EmployeeEditDialogComponent {
   }
 
   save() {
-    this.employeeService.updateEmployee(this.employee).subscribe(() => {
-      this.dialogRef.close();
+    this.employeeService.updateEmployee(this.employee).subscribe(editedEmployee => {
+      this.dialogRef.close(editedEmployee);
     });
   }
 
