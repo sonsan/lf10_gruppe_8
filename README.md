@@ -45,7 +45,6 @@ http://localhost:8089/swagger
 
 # Postgres
 
-```
 
 ### Intellij-Ansicht für Postgres Datenbank einrichten (geht nicht in Webstorm!)
 
