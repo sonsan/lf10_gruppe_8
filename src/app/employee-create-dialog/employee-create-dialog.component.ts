@@ -57,13 +57,11 @@ export class EmployeeCreateDialogComponent {
       return;
     }
 
-    // Remove fruit if it no longer has a name
     if (!value) {
       this.removeSkill(skill);
       return;
     }
 
-    // Edit existing fruit
     const index = this.employee.skillSet.indexOf(skill);
     if (index >= 0) {
       this.employee.skillSet[index] = value;

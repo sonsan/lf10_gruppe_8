@@ -6,6 +6,7 @@ import { EmployeeEditDialogComponent } from '../employee-edit-dialog/employee-ed
 import { EmployeeCreateDialogComponent } from '../employee-create-dialog/employee-create-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from "@angular/material/sort";
+import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'app-employee-list',
@@ -74,14 +75,31 @@ export class EmployeeListComponent implements OnInit {
   deleteEmployee(employee: Employee) {
     // TODO: handle this in service
     if (employee.id) {
-      this.employeeService.deleteEmployee(employee.id).subscribe(() => {
-        // remove employee from the array
-        this.employees = this.employees.filter((emp) => emp.id !== employee.id);
-        this.dataSource = new MatTableDataSource<Employee>(this.employees);
-        if (this.employees.length === 0) {
-          console.log('No data to show');
-        }
+      // Not sure why I can't just deleteEmployee(employee.id)
+      const id: number = employee.id;
+      this.openConfirmDialog(
+        `Are you sure you want to delete ${employee.firstName} ${employee.lastName}?`,
+        () => {
+        this.employeeService.deleteEmployee(id).subscribe(() => {
+          // remove employee from the array
+          this.employees = this.employees.filter((emp) => emp.id !== employee.id);
+          this.dataSource = new MatTableDataSource<Employee>(this.employees);
+          if (this.employees.length === 0) {
+            console.log('No data to show');
+          }
+        });
       });
     }
+  }
+
+  private openConfirmDialog(message: string, onConfirm: () => void) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: message
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        onConfirm();
+      }
+    });
   }
 }

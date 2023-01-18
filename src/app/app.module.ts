@@ -21,6 +21,7 @@ import {MatListModule} from "@angular/material/list";
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSortModule} from "@angular/material/sort";
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatSortModule} from "@angular/material/sort";
     EmployeeListComponent,
     EmployeeEditDialogComponent,
     EmployeeCreateDialogComponent,
-    HeaderComponent
+    HeaderComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
