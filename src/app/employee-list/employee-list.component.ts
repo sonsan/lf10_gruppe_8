@@ -1,29 +1,54 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable, of} from "rxjs";
 import {Employee} from "../Employee";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {EmployeeService} from "../employee.service";
+import {MatDialog} from "@angular/material/dialog";
+import {EmployeeEditDialogComponent} from "../employee-edit-dialog/employee-edit-dialog.component";
+import {EmployeeCreateDialogComponent} from "../employee-create-dialog/employee-create-dialog.component";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit {
+  employees: Employee[] = [];
+  dataSource = new MatTableDataSource<Employee>(this.employees);
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'street', 'postcode', 'city', 'phone', 'actions'];
 
-  bearer = 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzUFQ0dldiNno5MnlQWk1EWnBqT1U0RjFVN0lwNi1ELUlqQWVGczJPbGU0In0.eyJleHAiOjE2NzI3NjgxMDgsImlhdCI6MTY3Mjc2NDUwOCwianRpIjoiNGIyYmIwYjMtOTFiZS00MGRjLTkyMjQtNmMxY2ZlYzJiZTc2IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay5zenV0LmRldi9hdXRoL3JlYWxtcy9zenV0IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjU1NDZjZDIxLTk4NTQtNDMyZi1hNDY3LTRkZTNlZWRmNTg4OSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImVtcGxveWVlLW1hbmFnZW1lbnQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiIxN2I4MmNlYi1mZDQ3LTQzYjAtODBlYy0xNTRlYzk5N2VhNDMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zenV0IiwidW1hX2F1dGhvcml6YXRpb24iLCJ1c2VyIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIifQ.RwEfHQDiwzTXlvSma4HnRLMWpYORppIdugZFpJ1RpGIvT-xvY2vc6HlMjsIs36euYCMTZOd51x1Y8EJATEfzXiYNtef980DGlIbnX_vhLirA08FVJnkDSHt1YHfEjhYOMOY9DrsuIFkim80NaPPb1aNVFQ1PNNw_CZ7TLsnrPoO0oXCqKMH2tLUo-SgTablRsK30qJ4HzP58AHkmr0fyqSbwbu1il73ngxJ4JCfKgtYm8-F8O2KbHECOom9Q5O5ZSYPDKCNiVylbzrtdHGFpmOvgq5ZURIQk9qDexKcaEEoOr8YiIjDbqh1zNF-OpIeN8PnU2WFyU3XuaTQihjZDbg';
-  employees$: Observable<Employee[]>;
+  constructor(private employeeService: EmployeeService, private dialog: MatDialog) { }
 
-  constructor(private http: HttpClient) {
-    this.employees$ = of([]);
-    this.fetchData();
-  }
-
-  fetchData() {
-    this.employees$ = this.http.get<Employee[]>('/backend', {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/json')
-        .set('Authorization', `Bearer ${this.bearer}`)
+  ngOnInit(): void {
+    this.employeeService.getAllEmployees().subscribe(employees => {
+      this.employees = employees;
+      this.dataSource = new MatTableDataSource<Employee>(this.employees);
     });
   }
 
+  createEmployee() {
+    let dialogRef = this.dialog.open(EmployeeCreateDialogComponent);
+    // TODO: find a better way to update after change
+    dialogRef.afterClosed().subscribe(_ => {
+      this.employeeService.getAllEmployees().subscribe(employees => {
+        this.employees = employees;
+      });
+    })
+  }
+
+  editEmployee(employee: Employee) {
+    this.dialog.open(EmployeeEditDialogComponent, {data: employee});
+  }
+
+  deleteEmployee(employee: Employee) {
+    // TODO: handle this in service
+    if (employee.id) {
+      this.employeeService.deleteEmployee(employee.id).subscribe(() => {
+        // remove employee from the array
+        this.employees = this.employees.filter(emp => emp.id !== employee.id);
+        if(this.employees.length === 0){
+          console.log("No data to show")
+        }
+      });
+    }
+  }
 }
