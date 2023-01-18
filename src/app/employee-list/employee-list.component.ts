@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Employee } from '../Employee';
 import { EmployeeService } from '../employee.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeEditDialogComponent } from '../employee-edit-dialog/employee-edit-dialog.component';
 import { EmployeeCreateDialogComponent } from '../employee-create-dialog/employee-create-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-employee-list',
@@ -28,12 +29,18 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private dialog: MatDialog
-  ) { }
+  ) {
+
+  }
+
+  // @ts-ignore
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
     this.employeeService.getAllEmployees().subscribe((employees) => {
       this.employees = employees;
       this.dataSource = new MatTableDataSource<Employee>(this.employees);
+      this.dataSource.sort = this.sort;
     });
     this.dataSource.filterPredicate = function (record, filter) {
       return true;

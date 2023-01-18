@@ -20,6 +20,7 @@ import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
 import {MatListModule} from "@angular/material/list";
 import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatLegacyChipsModule,
     MatListModule,
     MatToolbarModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,35 +23,36 @@
   </button>
   <table
     mat-table
-    [dataSource]="dataSource"
     class="mat-elevation-z8 employee-table"
+    [dataSource]="dataSource"
+    matSort
   >
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
     <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="firstName">First Name</th>
       <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
     </ng-container>
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="lastName">Last Name</th>
       <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
     </ng-container>
     <ng-container matColumnDef="street">
-      <th mat-header-cell *matHeaderCellDef>Street</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="street">Street</th>
       <td mat-cell *matCellDef="let element">{{ element.street }}</td>
     </ng-container>
     <ng-container matColumnDef="postcode">
-      <th mat-header-cell *matHeaderCellDef>Postcode</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="postcode">Postcode</th>
       <td mat-cell *matCellDef="let element">{{ element.postcode }}</td>
     </ng-container>
     <ng-container matColumnDef="city">
-      <th mat-header-cell *matHeaderCellDef>City</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="city">City</th>
       <td mat-cell *matCellDef="let element">{{ element.city }}</td>
     </ng-container>
     <ng-container matColumnDef="phone">
-      <th mat-header-cell *matHeaderCellDef>Phone</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="phone">Phone</th>
       <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
     </ng-container>
     <ng-container matColumnDef="actions">
