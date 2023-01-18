@@ -1,0 +1,11 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.search-container > form {
+  width: 50vw;
+}
+.search-container > form > .mat-mdc-form-field {
+  width: 100%;
+}
