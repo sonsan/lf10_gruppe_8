@@ -40,8 +40,7 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getAllEmployees().subscribe((employees) => {
       this.employees = employees;
-      this.dataSource = new MatTableDataSource<Employee>(this.employees);
-      this.dataSource.sort = this.sort;
+      this.dataSourceSetup();
     });
     this.dataSource.filterPredicate = function (record, filter) {
       return true;
@@ -62,7 +61,7 @@ export class EmployeeListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((newEmployee) => {
       if (newEmployee) {
         this.employees.push(newEmployee);
-        this.dataSource = new MatTableDataSource<Employee>(this.employees);
+        this.dataSourceSetup();
       }
     });
   }
@@ -74,7 +73,7 @@ export class EmployeeListComponent implements OnInit {
       if (editedEmployee) {
         let index = this.employees.findIndex(e => e.id === employee.id);
         this.employees.splice(index, 1, editedEmployee);
-        this.dataSource = new MatTableDataSource<Employee>(this.employees);
+        this.dataSourceSetup();
       }
     });
   }
@@ -90,7 +89,7 @@ export class EmployeeListComponent implements OnInit {
         this.employeeService.deleteEmployee(id).subscribe(() => {
           // remove employee from the array
           this.employees = this.employees.filter((emp) => emp.id !== employee.id);
-          this.dataSource = new MatTableDataSource<Employee>(this.employees);
+          this.dataSourceSetup();
           if (this.employees.length === 0) {
             console.log('No data to show');
           }
@@ -108,5 +107,10 @@ export class EmployeeListComponent implements OnInit {
         onConfirm();
       }
     });
+  }
+
+  private dataSourceSetup() {
+    this.dataSource = new MatTableDataSource<Employee>(this.employees);
+    this.dataSource.sort = this.sort;
   }
 }
