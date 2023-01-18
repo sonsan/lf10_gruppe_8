@@ -1,38 +1,4 @@
-header {
-  background-color: #333;
-  color: white;
-  padding: 10px;
+mat-toolbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-h1 {
-  margin: 0;
-}
-nav {
-  display: flex;
-  align-items: center;
-}
-nav a {
-  margin-right: 10px;
-  text-decoration: none;
-  font-size: 1.2em;
-  color: white;
-  font-weight: bold;
-  transition: all 20ms ease-in-out;
-}
-nav a:hover {
-  color: #cecece;
-}
-button {
-  background-color: #2746e6;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  transition: all 50ms ease-in-out;
-}
-button:hover {
-  background-color: #213abf;
 }
