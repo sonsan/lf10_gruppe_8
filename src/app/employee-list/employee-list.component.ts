@@ -28,10 +28,11 @@ export class EmployeeListComponent implements OnInit {
   createEmployee() {
     let dialogRef = this.dialog.open(EmployeeCreateDialogComponent);
     // TODO: find a better way to update after change
-    dialogRef.afterClosed().subscribe(_ => {
-      this.employeeService.getAllEmployees().subscribe(employees => {
-        this.employees = employees;
-      });
+    dialogRef.afterClosed().subscribe(newEmployee => {
+      if (newEmployee) {
+        this.employees.push(newEmployee);
+        this.dataSource = new MatTableDataSource<Employee>(this.employees);
+      }
     })
   }
 
@@ -45,6 +46,7 @@ export class EmployeeListComponent implements OnInit {
       this.employeeService.deleteEmployee(employee.id).subscribe(() => {
         // remove employee from the array
         this.employees = this.employees.filter(emp => emp.id !== employee.id);
+        this.dataSource = new MatTableDataSource<Employee>(this.employees);
         if(this.employees.length === 0){
           console.log("No data to show")
         }
