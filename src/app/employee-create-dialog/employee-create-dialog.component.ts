@@ -1,12 +1,12 @@
-import {Component} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {Employee} from "../Employee";
-import {EmployeeService} from "../employee.service";
+import { Component } from '@angular/core';
+import { MatDialogRef } from "@angular/material/dialog";
+import { Employee } from "../Employee";
+import { EmployeeService } from "../employee.service";
 
 @Component({
   selector: 'app-employee-create-dialog',
   templateUrl: './employee-create-dialog.component.html',
-  styleUrls: ['./employee-create-dialog.component.css']
+  styleUrls: ['./employee-create-dialog.component.scss']
 })
 export class EmployeeCreateDialogComponent {
   employee: Employee = new Employee(undefined, "", "", "", "", "", "");

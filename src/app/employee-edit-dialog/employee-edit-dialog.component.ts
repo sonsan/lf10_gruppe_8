@@ -1,12 +1,12 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Employee} from "../Employee";
-import {EmployeeService} from "../employee.service";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Employee } from "../Employee";
+import { EmployeeService } from "../employee.service";
 
 @Component({
   selector: 'app-employee-edit-dialog',
   templateUrl: './employee-edit-dialog.component.html',
-  styleUrls: ['./employee-edit-dialog.component.css']
+  styleUrls: ['./employee-edit-dialog.component.scss']
 })
 export class EmployeeEditDialogComponent {
   employee: Employee;
