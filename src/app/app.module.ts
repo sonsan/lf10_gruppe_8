@@ -15,14 +15,16 @@ import { EmployeeCreateDialogComponent } from './employee-create-dialog/employee
 import {FormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     EmployeeListComponent,
     EmployeeEditDialogComponent,
-    EmployeeCreateDialogComponent
-  ],
+    EmployeeCreateDialogComponent,
+      HeaderComponent
+   ],
     imports: [
         BrowserModule,
         HttpClientModule,
