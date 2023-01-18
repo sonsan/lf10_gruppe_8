@@ -4,19 +4,20 @@
 html,
 body {
   height: 100%;
-  --color-bg-1: #202225;
-  --color-bg-2: #292b2f;
-  --color-bg-3: #2f3136;
-  --color-bg-4: #40444b;
-  --color-accent: #0095ff;
 }
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
   font-size: 100%;
   color: white;
-  background-color: var(--color-bg-2);
+  background-color: #313131;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
