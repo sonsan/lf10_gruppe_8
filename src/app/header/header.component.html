@@ -1,10 +1,8 @@
-<mat-toolbar class="header" color="primary">
+<mat-toolbar class="header">
   <span>Employees</span>
-  <a mat-button routerLink="/employee" [ngStyle]="{ 'margin-left': '20px' }"
-    >Employee List</a
-  >
-  <div style="flex: 1"></div>
-  <button mat-button style="position: absolute; right: 10px" (click)="logout()">
-    Log out
-  </button>
+  <nav>
+    <a mat-button routerLink="/employee">Employee List</a>
+  </nav>
+
+  <button mat-button (click)="logout()">Log out</button>
 </mat-toolbar>
