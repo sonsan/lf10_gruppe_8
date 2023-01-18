@@ -55,8 +55,8 @@ http://localhost:8089/swagger
 3. In der Database-Symbolleiste auf das Datenbanksymbol mit dem Schlüssel klicken
 4. auf das Pluszeichen klicken
 5. Datasource from URL auswählen
-6. URL der DB einfügen (jdbc:postgresql://postgres-employee:5432/employee_db) und PostgreSQL-Treiber auswählen, mit OK bestätigen
-7. Username lf10_starter und Passwort secret eintragen (siehe application.properties), mit Apply bestätigen
+6. URL der DB einfügen (jdbc:postgresql://localhost:5432/employee_db) und PostgreSQL-Treiber auswählen, mit OK bestätigen
+7. Username employee und Passwort secret eintragen (siehe application.properties), mit Apply bestätigen
 8. im Reiter Schemas alle Häkchen entfernen und lediglich vor lf10_starter_db und public Häkchen setzen
 9. mit Apply und ok bestätigen 
 ```
