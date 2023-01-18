@@ -1,37 +1,55 @@
-<div>
-<button mat-flat-button color="primary" (click)="createEmployee()">Create Employee</button>
+<div style="display: flex; flex-direction: row">
+  <button mat-flat-button color="primary" (click)="createEmployee()">
+    Create Employee
+  </button>
+
+  <form class="search-form">
+    <mat-form-field class="search-full-width">
+      <input
+        type="tel"
+        matInput
+        placeholder="Search"
+        name="search"
+        (keyup)="filterEmployee($event)"
+      />
+    </mat-form-field>
+  </form>
 </div>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 employee-table">
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8 employee-table"
+>
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
   </ng-container>
   <ng-container matColumnDef="firstName">
-    <th mat-header-cell *matHeaderCellDef> First Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    <th mat-header-cell *matHeaderCellDef>First Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
   </ng-container>
   <ng-container matColumnDef="lastName">
-    <th mat-header-cell *matHeaderCellDef> Last Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    <th mat-header-cell *matHeaderCellDef>Last Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
   </ng-container>
   <ng-container matColumnDef="street">
-    <th mat-header-cell *matHeaderCellDef> Street </th>
-    <td mat-cell *matCellDef="let element"> {{element.street}} </td>
+    <th mat-header-cell *matHeaderCellDef>Street</th>
+    <td mat-cell *matCellDef="let element">{{ element.street }}</td>
   </ng-container>
   <ng-container matColumnDef="postcode">
-    <th mat-header-cell *matHeaderCellDef> Postcode </th>
-    <td mat-cell *matCellDef="let element"> {{element.postcode}} </td>
+    <th mat-header-cell *matHeaderCellDef>Postcode</th>
+    <td mat-cell *matCellDef="let element">{{ element.postcode }}</td>
   </ng-container>
   <ng-container matColumnDef="city">
-    <th mat-header-cell *matHeaderCellDef> City </th>
-    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+    <th mat-header-cell *matHeaderCellDef>City</th>
+    <td mat-cell *matCellDef="let element">{{ element.city }}</td>
   </ng-container>
   <ng-container matColumnDef="phone">
-    <th mat-header-cell *matHeaderCellDef> Phone </th>
-    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
   </ng-container>
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button (click)="editEmployee(element)">
         <mat-icon>edit</mat-icon>
@@ -42,5 +60,5 @@
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
