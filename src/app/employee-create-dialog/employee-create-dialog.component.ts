@@ -19,8 +19,8 @@ export class EmployeeCreateDialogComponent {
   save() {
     // TODO: valid check
     if (this.employee) {
-      this.employeeService.addEmployee(this.employee).subscribe(() => {
-        this.dialogRef.close();
+      this.employeeService.addEmployee(this.employee).subscribe(createdEmployee => {
+        this.dialogRef.close(createdEmployee);
       });
     }
   }
