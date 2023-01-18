@@ -69,7 +69,14 @@ export class EmployeeListComponent implements OnInit {
 
   editEmployee(employee: Employee) {
     console.log(`${JSON.stringify(employee)}`);
-    this.dialog.open(EmployeeEditDialogComponent, { data: employee });
+    let dialogRef = this.dialog.open(EmployeeEditDialogComponent, { data: employee });
+    dialogRef.afterClosed().subscribe((editedEmployee) => {
+      if (editedEmployee) {
+        let index = this.employees.findIndex(e => e.id === employee.id);
+        this.employees.splice(index, 1, editedEmployee);
+        this.dataSource = new MatTableDataSource<Employee>(this.employees);
+      }
+    });
   }
 
   deleteEmployee(employee: Employee) {
