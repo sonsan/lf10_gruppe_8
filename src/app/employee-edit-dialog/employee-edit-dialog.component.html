@@ -1,5 +1,6 @@
 <h2 mat-dialog-title>Edit Employee</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content>
+  <p>
   <mat-form-field>
     <mat-label>First Name</mat-label>
     <input matInput [(ngModel)]="employee.firstName">
@@ -20,9 +21,30 @@
     <mat-label>City</mat-label>
     <input matInput [(ngModel)]="employee.city">
   </mat-form-field>
+  </p>
+  <p>
   <mat-form-field>
     <mat-label>Phone #</mat-label>
     <input matInput [(ngModel)]="employee.phone">
+  </mat-form-field>
+  </p>
+  <p>
+  <mat-form-field>
+    <mat-label>New Skill</mat-label>
+    <input matInput (keyup.enter)="addSkill(skillsInput.value)" #skillsInput>
+  </mat-form-field>
+  </p>
+  <mat-form-field>
+    <mat-label>Skills</mat-label>
+    <mat-chip-list class="chip-list" #skills>
+      <mat-chip
+        *ngFor="let skill of employee.skillSet"
+        [selectable]="true"
+        (removed)="removeSkill(skill)">
+          {{ skill }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>

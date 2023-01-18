@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Employee} from "../Employee";
 import {EmployeeService} from "../employee.service";
 import {MatDialog} from "@angular/material/dialog";
@@ -15,6 +15,8 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
   dataSource = new MatTableDataSource<Employee>(this.employees);
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'street', 'postcode', 'city', 'phone', 'actions'];
+  // @ts-ignore
+  @ViewChild('skillInput',{static: false}) dessertInput: ElementRef<HTMLInputElement>;
 
   constructor(private employeeService: EmployeeService, private dialog: MatDialog) { }
 
@@ -37,6 +39,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   editEmployee(employee: Employee) {
+    console.log(`${JSON.stringify(employee)}`);
     this.dialog.open(EmployeeEditDialogComponent, {data: employee});
   }
 

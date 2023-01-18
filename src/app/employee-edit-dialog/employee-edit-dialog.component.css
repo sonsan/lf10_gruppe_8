@@ -1,0 +1,8 @@
+.chip-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chip-list ::ng-deep input {
+  align-self: flex-end;
+}

@@ -24,6 +24,16 @@
     <mat-label>Phone #</mat-label>
     <input matInput [(ngModel)]="employee.phone" name="phoneNumber" placeholder="+49 1111 02313">
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>Skill</mat-label>
+    <div class="buttonIn">
+      <input matInput [(ngModel)]="newSkill" name="newSkill">
+      <button mat-button (click)="addSkill()">Add</button>
+    </div>
+  </mat-form-field>
+  <mat-list *ngFor="let skill of employee.skillSet">
+    {{skill}}<button mat-button (click)="removeSkill(skill)"><mat-icon>delete</mat-icon></button>
+  </mat-list>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="dialogRef.close()">Cancel</button>

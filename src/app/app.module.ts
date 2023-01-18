@@ -15,6 +15,9 @@ import { EmployeeCreateDialogComponent } from './employee-create-dialog/employee
 import {FormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -23,19 +26,22 @@ import {MatIconModule} from "@angular/material/icon";
     EmployeeEditDialogComponent,
     EmployeeCreateDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        FormsModule,
-        MatTableModule,
-        MatIconModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    MatTableModule,
+    MatIconModule,
+    MatChipsModule,
+    MatLegacyChipsModule,
+    MatListModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
