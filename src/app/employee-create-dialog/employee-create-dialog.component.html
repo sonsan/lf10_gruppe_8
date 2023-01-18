@@ -34,8 +34,12 @@
   <mat-list *ngFor="let skill of employee.skillSet">
     {{skill}}<button mat-button (click)="removeSkill(skill)"><mat-icon>delete</mat-icon></button>
   </mat-list>
+  <div *ngIf="saving">
+    <mat-spinner></mat-spinner>
+    <mat-label>Saving Changes</mat-label>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="dialogRef.close()">Cancel</button>
-  <button mat-button [mat-dialog-close]="employee" (click)="save()">Save</button>
+  <button mat-button (click)="save()">Save</button>
 </mat-dialog-actions>

@@ -15,6 +15,7 @@ export class EmployeeEditDialogComponent {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   newSkill: string = "";
   chipList: MatChipListbox | undefined;
+  saving: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeEditDialogComponent>,
@@ -26,7 +27,9 @@ export class EmployeeEditDialogComponent {
   }
 
   save() {
+    this.saving = true;
     this.employeeService.updateEmployee(this.employee).subscribe(editedEmployee => {
+      this.saving = false;
       this.dialogRef.close(editedEmployee);
     });
   }

@@ -46,8 +46,12 @@
       </mat-chip>
     </mat-chip-list>
   </mat-form-field>
+  <div *ngIf="saving">
+    <mat-spinner></mat-spinner>
+    <mat-label>Saving Changes</mat-label>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="dialogRef.close()">Cancel</button>
-  <button mat-button [mat-dialog-close]="employee" (click)="save()">Save</button>
+  <button mat-button (click)="save()">Save</button>
 </mat-dialog-actions>
