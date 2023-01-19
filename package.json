@@ -6,7 +6,9 @@
     "start": "ng serve  --proxy-config src/proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:e2e": "npx cypress run",
+    "test:e2e:ui": "npx cypress open"
   },
   "private": true,
   "dependencies": {
