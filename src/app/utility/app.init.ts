@@ -4,7 +4,7 @@ export function initializeKeycloak(keycloak: KeycloakService): () => Promise<boo
     return () =>
         keycloak.init({
             config: {
-                url: 'http://keycloak.szut.dev/auth',
+                url: 'https://keycloak.szut.dev/auth',
                 realm: 'szut',
                 clientId: 'employee-management-service-frontend',
             },
