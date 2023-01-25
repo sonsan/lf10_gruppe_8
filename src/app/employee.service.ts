@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import {map, Observable} from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Employee } from './Employee';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Skill} from "./Skill";
+import { Skill } from "./Skill";
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // method to add an employee
   addEmployee(employee: Employee): Observable<Employee> {
     console.log(`Adding ${JSON.stringify(employee)} to backend`);
+
+    if (employee.skillSet == undefined) {
+      employee.skillSet = [""];
+    }
     return this.http.post<Employee>("/backend/employees", employee, {
       headers: this.getHeaders()
     });
