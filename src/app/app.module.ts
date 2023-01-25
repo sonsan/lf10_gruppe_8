@@ -23,16 +23,18 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSortModule} from "@angular/material/sort";
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     EmployeeListComponent,
     EmployeeEditDialogComponent,
     EmployeeCreateDialogComponent,
     HeaderComponent,
-    ConfirmDialogComponent
-  ],
+    ConfirmDialogComponent,
+      LoginComponent
+   ],
   imports: [
     BrowserModule,
     HttpClientModule,
