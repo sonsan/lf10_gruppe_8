@@ -9,7 +9,7 @@ export function initializeKeycloak(keycloak: KeycloakService): () => Promise<boo
                 clientId: 'employee-management-service-frontend',
             },
             initOptions: {
-                checkLoginIframe: true,
+                checkLoginIframe: false,
                 checkLoginIframeInterval: 25
             },
             loadUserProfileAtStartUp: true
