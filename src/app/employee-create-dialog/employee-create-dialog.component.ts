@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {Employee} from "../Employee";
-import {EmployeeService} from "../employee.service";
-import {MatChipEditedEvent, MatChipListbox} from "@angular/material/chips";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import { Component } from '@angular/core';
+import { MatDialogRef } from "@angular/material/dialog";
+import { Employee } from "../Employee";
+import { EmployeeService } from "../employee.service";
+import { MatChipEditedEvent, MatChipListbox } from "@angular/material/chips";
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'app-employee-create-dialog',
@@ -49,8 +49,11 @@ export class EmployeeCreateDialogComponent {
 
   addSkill(): void {
     console.log(`Adding ${this.newSkill} to employee skillset`);
-    this.employee.skillSet?.push(this.newSkill);
-    this.newSkill = "";
+    if (this.newSkill.length > 0) {
+      this.employee.skillSet?.push(this.newSkill);
+      this.newSkill = "";
+    }
+
   }
 
   editSkill(skill: string, event: MatChipEditedEvent) {
