@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Employee } from '../Employee';
 import { EmployeeService } from '../employee.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EmployeeEditDialogComponent } from '../employee-edit-dialog/employee-edit-dialog.component';
-import { EmployeeCreateDialogComponent } from '../employee-create-dialog/employee-create-dialog.component';
+import { EmployeeFormDialogComponent } from '../employee-form-dialog/employee-form-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
@@ -30,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
@@ -54,8 +53,9 @@ export class EmployeeListComponent implements OnInit {
   }
 
   createEmployee() {
-    let dialogRef = this.dialog.open(EmployeeCreateDialogComponent);
+    let dialogRef = this.dialog.open(EmployeeFormDialogComponent, { data: new Employee(undefined, "", "", "", "", "", "", undefined) });
     // TODO: find a better way to update after change
+
     dialogRef.afterClosed().subscribe((newEmployee) => {
       if (newEmployee) {
         this.employees.push(newEmployee);
@@ -66,7 +66,7 @@ export class EmployeeListComponent implements OnInit {
 
   editEmployee(employee: Employee) {
     console.log(`${JSON.stringify(employee)}`);
-    let dialogRef = this.dialog.open(EmployeeEditDialogComponent, {
+    let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
       data: employee,
     });
     dialogRef.afterClosed().subscribe((editedEmployee) => {

@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,31 +10,29 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
-import { EmployeeEditDialogComponent } from './employee-edit-dialog/employee-edit-dialog.component';
-import { EmployeeCreateDialogComponent } from './employee-create-dialog/employee-create-dialog.component';
-import {FormsModule} from "@angular/forms";
-import {MatTableModule} from "@angular/material/table";
-import {MatIconModule} from "@angular/material/icon";
-import {MatChipsModule} from "@angular/material/chips";
-import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
-import {MatListModule} from "@angular/material/list";
+import { FormsModule } from "@angular/forms";
+import { MatTableModule } from "@angular/material/table";
+import { MatIconModule } from "@angular/material/icon";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatLegacyChipsModule } from "@angular/material/legacy-chips";
+import { MatListModule } from "@angular/material/list";
 import { HeaderComponent } from './header/header.component';
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatSortModule} from "@angular/material/sort";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatSortModule } from "@angular/material/sort";
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
-import {initializeKeycloak} from "./utility/app.init";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { KeycloakAngularModule, KeycloakService } from "keycloak-angular";
+import { initializeKeycloak } from "./utility/app.init";
 import Keycloak from "keycloak-js";
+import { EmployeeFormDialogComponent } from './employee-form-dialog/employee-form-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    EmployeeEditDialogComponent,
-    EmployeeCreateDialogComponent,
     HeaderComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    EmployeeFormDialogComponent
   ],
   imports: [
     BrowserModule,

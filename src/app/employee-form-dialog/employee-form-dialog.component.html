@@ -1,4 +1,10 @@
-<h2 mat-dialog-title>Create Employee</h2>
+<h2 mat-dialog-title *ngIf="isEditing; else createEmployeeText">
+	Edit Employee
+</h2>
+<ng-template #createEmployeeText
+	><h2 mat-dialog-title>Create Employee</h2></ng-template
+>
+
 <mat-dialog-content class="mat-typography employee-form-diaglog">
 	<div class="form">
 		<div class="form-group">
@@ -68,26 +74,27 @@
 					<mat-label>Skill</mat-label>
 					<input matInput [(ngModel)]="newSkill" name="newSkill" />
 				</mat-form-field>
-				<button (click)="addSkill()">
+				<button (click)="addSkill(newSkill)">
 					<mat-icon>add</mat-icon>
 				</button>
+				<p *ngIf="isEditing">-> Backend does not send skillset</p>
 			</div>
 
 			<div class="employee-form-skills-list">
-				<mat-chip
-					*ngFor="let skill of employee.skillSet"
-					[selectable]="true"
-					(removed)="removeSkill(skill)"
-				>
-					<div *ngIf="skill.length > 8; else tooShort">
-						{{ skill.substring(0, 8) + "..." }}
-					</div>
-					<ng-template #tooShort>
-						{{ skill }}
-					</ng-template>
+				<div *ngFor="let skill of employee.skillSet | slice : 1">
+					<div *ngIf="skill.length > 0">
+						<mat-chip [selectable]="true" (removed)="removeSkill(skill)">
+							<div *ngIf="skill.length > 8; else tooShort">
+								{{ skill.substring(0, 8) + "..." }}
+							</div>
+							<ng-template #tooShort>
+								{{ skill }}
+							</ng-template>
 
-					<mat-icon matChipRemove>cancel</mat-icon>
-				</mat-chip>
+							<mat-icon matChipRemove>cancel</mat-icon>
+						</mat-chip>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
