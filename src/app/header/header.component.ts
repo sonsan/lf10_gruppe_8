@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {KeycloakService} from "keycloak-angular";
 
 
 @Component({
@@ -8,12 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private keycloakService: KeycloakService) { }
 
   ngOnInit() {
   }
   logout() {
-    this.router.navigate(['/logout/']);
+    this.keycloakService.logout('http://localhost:4200');
+    //this.router.navigate(['/logout/']);
   }
 
 }
