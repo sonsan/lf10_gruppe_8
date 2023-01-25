@@ -8,9 +8,6 @@ export class Employee {
     public phone?: string,
     public skillSet?: [any]
   ) {
-    if (this.skillSet == undefined) {
-      this.skillSet = [""]
-    }
   }
 }
 
