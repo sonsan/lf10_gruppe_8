@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Employee } from "./Employee";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
+import {KeycloakService} from "keycloak-angular";
 
 
 @Component({
@@ -9,9 +10,20 @@ import { Observable, of } from "rxjs";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor() {
+  isLoggedIn = false;
+
+  constructor(private keycloakService: KeycloakService) {
   }
 
+  onLogoutClick(): void {
+    this.keycloakService.logout('http://keycloak.szut.dev/auth')
+  }
+
+  ngOnInit(): void {
+    this.keycloakService.isLoggedIn().then((v) => {
+      this.isLoggedIn = v;
+    })
+  }
 }
