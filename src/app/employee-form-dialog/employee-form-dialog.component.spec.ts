@@ -11,9 +11,8 @@ describe('EmployeeFormDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EmployeeFormDialogComponent]
-    })
-      .compileComponents();
+      declarations: [EmployeeFormDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

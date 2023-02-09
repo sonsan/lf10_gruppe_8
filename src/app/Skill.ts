@@ -1,4 +1,3 @@
 export class Skill {
-    constructor(public designation: string) {
-    }
+  constructor(public designation: string) {}
 }

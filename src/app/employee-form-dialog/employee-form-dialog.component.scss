@@ -1,58 +1,58 @@
 .employee-form-diaglog {
-	gap: 10px;
-	display: flex;
-	justify-content: center;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
 
-	.form {
-		flex-direction: column;
-		display: flex;
-		justify-content: center;
-		.form-group {
-			flex-direction: row;
-			display: flex;
-			justify-content: center;
-			gap: 20px;
+  .form {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    .form-group {
+      flex-direction: row;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
 
-			mat-form-field {
-				width: 100%;
-			}
-		}
-	}
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
 
-	.employee-form-skills {
-		display: flex;
-		flex-direction: row;
-		column-gap: 20px;
-		.employee-form-skills-add {
-			display: flex;
-			flex-direction: row;
-			mat-form-field {
-				height: 78px;
-			}
+  .employee-form-skills {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    .employee-form-skills-add {
+      display: flex;
+      flex-direction: row;
+      mat-form-field {
+        height: 78px;
+      }
 
-			button {
-				height: 60px;
-				aspect-ratio: 1/1;
-				outline: none;
-				cursor: pointer;
-				border: 0;
-				background-color: #3f51b5;
+      button {
+        height: 60px;
+        aspect-ratio: 1/1;
+        outline: none;
+        cursor: pointer;
+        border: 0;
+        background-color: #3f51b5;
 
-				mat-icon {
-					color: #fff;
-				}
-			}
-		}
+        mat-icon {
+          color: #fff;
+        }
+      }
+    }
 
-		.employee-form-skills-list {
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr;
-			gap: 10px;
+    .employee-form-skills-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 10px;
 
-			mat-chip {
-				max-width: 150px;
-				text-overflow: ellipsis;
-			}
-		}
-	}
+      mat-chip {
+        max-width: 150px;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 }

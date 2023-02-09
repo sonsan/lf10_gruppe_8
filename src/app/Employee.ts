@@ -1,5 +1,6 @@
 export class Employee {
-  constructor(public id?: number,
+  constructor(
+    public id?: number,
     public lastName?: string,
     public firstName?: string,
     public street?: string,
@@ -7,7 +8,5 @@ export class Employee {
     public city?: string,
     public phone?: string,
     public skillSet?: [any]
-  ) {
-  }
+  ) {}
 }
-

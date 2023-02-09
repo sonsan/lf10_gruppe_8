@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
@@ -53,7 +53,9 @@ export class EmployeeListComponent implements OnInit {
   }
 
   createEmployee() {
-    let dialogRef = this.dialog.open(EmployeeFormDialogComponent, { data: new Employee(undefined, "", "", "", "", "", "", undefined) });
+    let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
+      data: new Employee(undefined, '', '', '', '', '', '', undefined),
+    });
     // TODO: find a better way to update after change
 
     dialogRef.afterClosed().subscribe((newEmployee) => {
