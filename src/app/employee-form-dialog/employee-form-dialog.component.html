@@ -57,6 +57,7 @@
         <mat-label>Postcode</mat-label>
         <input
           matInput
+          pattern="^\d{5}$"
           [(ngModel)]="employee.postcode"
           name="postcode"
           placeholder="12345"
