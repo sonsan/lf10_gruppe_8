@@ -42,7 +42,7 @@ export class EmployeeFormDialogComponent {
     ]),
     street: new FormControl(),
     phone: new FormControl('', [
-      Validators.pattern('^(0)[1-9][0-9 ]{7,32}$'), // Validators.pattern('^(\+|0)[1-9][0-9 \-\(\)\.]{7,32}$'),
+      Validators.pattern(/^\+?(\d[\d\s]{0,13}\d|\d{1,14})\s*$/)
     ]),
     city: new FormControl('', [
       Validators.required,

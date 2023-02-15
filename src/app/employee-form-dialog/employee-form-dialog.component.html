@@ -118,9 +118,13 @@
           [readonly]="employeeReadonly"
         />
       </mat-form-field>
-      <mat-error 
-      class="error-text" *ngIf="employeeForm.get('phone')!.hasError('pattern')">
-        Only digits 0-9,- and spaces allowed
+      <mat-error
+        class="error-text"
+        *ngIf="employeeForm.get('phone')!.hasError('pattern')"
+      >
+        Please enter a valid phone number, including an optional country code at
+        <br />
+        the beginning and up to 15 digits (whitespaces are not counted).
       </mat-error>
     </div>
   </form>
