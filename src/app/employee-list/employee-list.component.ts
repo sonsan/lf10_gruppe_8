@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
@@ -48,13 +48,15 @@ export class EmployeeListComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value
       .trim()
       .toLowerCase();
-    console.log(filterValue);
     this.dataSource.filter = filterValue;
   }
 
   createEmployee() {
     let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
-      data: { employee: new Employee(undefined, '', '', '', '', '', '', undefined), employeeReadonly: false },
+      data: {
+        employee: new Employee(undefined, '', '', '', '', '', '', undefined),
+        employeeReadonly: false,
+      },
     });
     // TODO: find a better way to update after change
 
@@ -66,11 +68,12 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-
   viewEmployee(employee: Employee) {
-    console.log(`${JSON.stringify(employee)}`);
     let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
-      data: { employee: employee, employeeReadonly: true }
+      data: {
+        employee: this.employeeService.getEmployee(employee.id!),
+        employeeReadonly: true,
+      },
     });
     dialogRef.afterClosed().subscribe((editedEmployee) => {
       if (editedEmployee) {
@@ -82,7 +85,6 @@ export class EmployeeListComponent implements OnInit {
   }
 
   editEmployee(employee: Employee) {
-    console.log(`${JSON.stringify(employee)}`);
     let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
       data: { employee: Object.assign({}, employee), employeeReadonly: false },
     });

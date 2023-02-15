@@ -71,7 +71,6 @@ export class EmployeeService {
    * Read all employees from the Backend.
    */
   getAllEmployees(): Observable<Employee[]> {
-    console.log('loading employees from backend');
     return this.http.get<Employee[]>('/backend/employees', {
       headers: this.getHeaders(),
     });
