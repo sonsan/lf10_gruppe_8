@@ -58,6 +58,16 @@ export class EmployeeService {
   }
 
   /**
+   * Get a employee by their id
+   * @param {number} employee_id the id of the employee.
+   */
+  getEmployee(employee_id: number): Observable<Employee> {
+    return this.http.get<Employee>(`/backend/employees/${employee_id}`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
    * Read all employees from the Backend.
    */
   getAllEmployees(): Observable<Employee[]> {
