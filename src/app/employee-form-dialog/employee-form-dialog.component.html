@@ -30,6 +30,19 @@
             [readonly]="employeeReadonly"
             formControlName="firstName"
           />
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('firstName')!.hasError('pattern')"
+          >
+            Please enter a valid first name using only letters, hyphens, spaces,
+            and German umlauts or 'ß', up to 100 characters.
+          </mat-error>
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('firstName')!.hasError('required')"
+          >
+            Please enter a first name
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Last Name</mat-label>
@@ -41,8 +54,18 @@
             [readonly]="employeeReadonly"
             formControlName="lastName"
           />
-          <mat-error *ngIf="employeeForm.get('street')!.hasError('required')">
-            Please enter a Name
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('lastName')!.hasError('pattern')"
+          >
+            Please enter a valid last name using only letters, hyphens, spaces,
+            and German umlauts or 'ß', up to 100 characters.
+          </mat-error>
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('lastName')!.hasError('required')"
+          >
+            Please enter a last name
           </mat-error>
         </mat-form-field>
       </div>
@@ -59,9 +82,16 @@
         />
         <mat-error
           class="error-text"
+          *ngIf="employeeForm.get('street')!.hasError('pattern')"
+        >
+          Please enter a valid street name using only letters, hyphens, spaces,
+          and German umlauts or 'ß', up to 100 characters.
+        </mat-error>
+        <mat-error
+          class="error-text"
           *ngIf="employeeForm.get('street')!.hasError('required')"
         >
-          Please enter a Street
+          Please enter a street
         </mat-error>
       </mat-form-field>
 
@@ -80,7 +110,7 @@
             class="error-text"
             *ngIf="employeeForm.get('postcode')!.hasError('pattern')"
           >
-            Postcode needs 5 digits.
+            Please enter a valid postal code with a maximum of 5 digits.
           </mat-error>
           <mat-error
             class="error-text"
@@ -99,6 +129,13 @@
             formControlName="city"
             [readonly]="employeeReadonly"
           />
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('city')!.hasError('pattern')"
+          >
+            Please enter a valid city name using only letters, hyphens, spaces,
+            and German umlauts or 'ß', up to 100 characters.
+          </mat-error>
           <mat-error
             class="error-text"
             *ngIf="employeeForm.get('city')!.hasError('required')"
