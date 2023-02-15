@@ -54,7 +54,10 @@
           [readonly]="employeeReadonly"
           formControlName="street"
         />
-        <mat-error *ngIf="employeeForm.get('street')!.hasError('required')">
+        <mat-error
+          class="error-text"
+          *ngIf="employeeForm.get('street')!.hasError('required')"
+        >
           Street is required
         </mat-error>
       </mat-form-field>
@@ -70,7 +73,16 @@
             [readonly]="employeeReadonly"
             formControlName="postcode"
           />
-          <mat-error *ngIf="employeeForm.get('postcode')!.hasError('required')">
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('postcode')!.hasError('pattern')"
+          >
+            Postcode needs 5 digits.
+          </mat-error>
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('postcode')!.hasError('required')"
+          >
             Postcode is required
           </mat-error>
         </mat-form-field>
@@ -84,7 +96,10 @@
             formControlName="city"
             [readonly]="employeeReadonly"
           />
-          <mat-error *ngIf="employeeForm.get('city')!.hasError('required')">
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('city')!.hasError('required')"
+          >
             City is required
           </mat-error>
         </mat-form-field>
