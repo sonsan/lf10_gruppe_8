@@ -37,10 +37,16 @@ export class EmployeeFormDialogComponent {
       Validators.required,
     ]),
     firstName: new FormControl(),
-    lastName: new FormControl(),
+    lastName: new FormControl('', [
+      Validators.required,
+    ]),
     street: new FormControl(),
-    phone: new FormControl(),
-    city: new FormControl(),
+    phone: new FormControl('', [
+      Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'),
+    ]),
+    city: new FormControl('', [
+      Validators.required,
+    ]),
   });
 
   constructor(

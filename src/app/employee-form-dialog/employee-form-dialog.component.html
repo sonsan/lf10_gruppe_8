@@ -54,6 +54,9 @@
           [readonly]="employeeReadonly"
           formControlName="street"
         />
+        <mat-error *ngIf="employeeForm.get('street')!.hasError('required')">
+          Street is required
+        </mat-error>
       </mat-form-field>
 
       <div class="form-group">
@@ -67,6 +70,9 @@
             [readonly]="employeeReadonly"
             formControlName="postcode"
           />
+          <mat-error *ngIf="employeeForm.get('postcode')!.hasError('required')">
+            Postcode is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>City</mat-label>
@@ -78,6 +84,9 @@
             formControlName="city"
             [readonly]="employeeReadonly"
           />
+          <mat-error *ngIf="employeeForm.get('city')!.hasError('required')">
+            City is required
+          </mat-error>
         </mat-form-field>
       </div>
 
