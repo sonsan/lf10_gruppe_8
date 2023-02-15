@@ -26,7 +26,12 @@ export class EmployeeFormDialogComponent {
   chipList: MatChipListbox | undefined;
   saving: boolean = false;
   postcodeValid: boolean = false;
-  employeeForm: FormGroup;
+  employeeForm: FormGroup = new FormGroup({
+    postcode: new FormControl('', [
+      Validators.pattern('[0-9]{5}'),
+      Validators.required,
+    ]),
+  });
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
@@ -37,12 +42,6 @@ export class EmployeeFormDialogComponent {
     this.employee = data.employee;
     this.employeeReadonly = data.employeeReadonly;
     this.employeeExists = this.employee.id != undefined;
-    this.employeeForm = new FormGroup({
-      postcode: new FormControl(this.employee.postcode, [
-        Validators.pattern('[0-9]{5}'),
-        Validators.required,
-      ]),
-    });
   }
 
   save() {
