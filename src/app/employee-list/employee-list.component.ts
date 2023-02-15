@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
@@ -61,6 +61,21 @@ export class EmployeeListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((newEmployee) => {
       if (newEmployee) {
         this.employees.push(newEmployee);
+        this.dataSourceSetup();
+      }
+    });
+  }
+
+
+  viewEmployee(employee: Employee) {
+    console.log(`${JSON.stringify(employee)}`);
+    let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
+      data: employee
+    });
+    dialogRef.afterClosed().subscribe((editedEmployee) => {
+      if (editedEmployee) {
+        let index = this.employees.findIndex((e) => e.id === employee.id);
+        this.employees.splice(index, 1, editedEmployee);
         this.dataSourceSetup();
       }
     });

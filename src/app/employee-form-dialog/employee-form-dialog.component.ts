@@ -18,7 +18,8 @@ import { COMMA, E, ENTER } from '@angular/cdk/keycodes';
 })
 export class EmployeeFormDialogComponent {
   employee: Employee;
-  isEditing: boolean = false;
+  employeeExists: boolean = false;
+  employeeReadonly: boolean = false;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   newSkill: string = '';
   chipList: MatChipListbox | undefined;
@@ -28,16 +29,17 @@ export class EmployeeFormDialogComponent {
     public dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
 
     @Inject(MAT_DIALOG_DATA) data: Employee,
-
+    @Inject(MAT_DIALOG_DATA) employeeReadonly: boolean = false,
     private employeeService: EmployeeService
   ) {
     this.employee = data;
-    this.isEditing = this.employee.id != undefined;
+    this.employeeReadonly = employeeReadonly;
+    this.employeeExists = this.employee.id != undefined;
   }
 
   save() {
     this.saving = true;
-    if (this.isEditing) {
+    if (this.employeeExists && !this.employeeReadonly) {
       this.employeeService
         .updateEmployee(this.employee)
         .subscribe((editedEmployee) => {
