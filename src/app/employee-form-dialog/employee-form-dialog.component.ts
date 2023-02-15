@@ -20,7 +20,7 @@ import {
 const regexName = /^[^-\s]([a-zA-ZZäöüÄÖÜß_.\s-]){0,49}$/
 const regexStreet = /^[^-\s]([a-zA-Z0-9ZäöüÄÖÜß_.\s-]){0,49}$/
 const regexPostcode = /^\d{5}$/
-const regexPhone = /^\s*\+?(\d[\d\s]{0,13}\d|\d{1,14})\s*$/
+const regexPhone = /^(\+?\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form-dialog.component.html',
