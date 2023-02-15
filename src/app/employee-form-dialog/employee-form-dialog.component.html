@@ -16,7 +16,7 @@
   </ng-container>
 </ng-container>
 
-<mat-dialog-content class="mat-typography employee-form-diaglog">
+<mat-dialog-content class="mat-typography employee-form-dialog">
   <form [formGroup]="employeeForm">
     <div class="form">
       <div class="form-group">
@@ -35,7 +35,7 @@
             *ngIf="employeeForm.get('firstName')!.hasError('pattern')"
           >
             Please enter a valid first name using only letters, hyphens, spaces,
-            and German umlauts or 'ß', up to 100 characters.
+            and German umlauts or 'ß', up to 50 characters.
           </mat-error>
           <mat-error
             class="error-text"
@@ -59,7 +59,7 @@
             *ngIf="employeeForm.get('lastName')!.hasError('pattern')"
           >
             Please enter a valid last name using only letters, hyphens, spaces,
-            and German umlauts or 'ß', up to 100 characters.
+            and German umlauts or 'ß', up to 50 characters.
           </mat-error>
           <mat-error
             class="error-text"
@@ -85,7 +85,7 @@
           *ngIf="employeeForm.get('street')!.hasError('pattern')"
         >
           Please enter a valid street name using only letters, hyphens, spaces,
-          and German umlauts or 'ß', up to 100 characters.
+          and German umlauts or 'ß', up to 50 characters.
         </mat-error>
         <mat-error
           class="error-text"
@@ -134,7 +134,7 @@
             *ngIf="employeeForm.get('city')!.hasError('pattern')"
           >
             Please enter a valid city name using only letters, hyphens, spaces,
-            and German umlauts or 'ß', up to 100 characters.
+            and German umlauts or 'ß', up to 50 characters.
           </mat-error>
           <mat-error
             class="error-text"
@@ -162,6 +162,12 @@
         Please enter a valid phone number, including an optional country code at
         <br />
         the beginning and up to 15 digits (whitespaces are not counted).
+      </mat-error>
+      <mat-error
+        class="error-text"
+        *ngIf="employeeForm.get('phone')!.hasError('required')"
+      >
+        Please enter a phone number
       </mat-error>
     </div>
   </form>

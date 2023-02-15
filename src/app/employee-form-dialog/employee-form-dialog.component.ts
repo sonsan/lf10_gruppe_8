@@ -17,7 +17,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-const regexName = /^[a-zA-ZäöüßÄÖÜß]+(?:[-\s][a-zA-ZäöüßÄÖÜß]+)*$/;
+const regexName = /^[^-\s]([a-zA-ZZäöüÄÖÜß_.\s-]){0,49}$/
 const regexPostcode = /^\d{1,5}$/
 const regexPhone = /^\s*\+?(\d[\d\s]{0,13}\d|\d{1,14})\s*$/
 @Component({
@@ -52,7 +52,8 @@ export class EmployeeFormDialogComponent {
       Validators.required,
     ]),
     phone: new FormControl('', [
-      Validators.pattern(regexPhone)
+      Validators.pattern(regexPhone),
+      Validators.required,
     ]),
     city: new FormControl('', [
       Validators.pattern(regexName),

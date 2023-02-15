@@ -2,7 +2,7 @@
   font-size: 10px;
 }
 
-.employee-form-diaglog {
+.employee-form-dialog {
   gap: 10px;
   display: flex;
   justify-content: center;
@@ -11,6 +11,9 @@
     flex-direction: column;
     display: flex;
     justify-content: center;
+    mat-form-field {
+      margin-bottom: 20px;
+    }
     .form-group {
       flex-direction: row;
       display: flex;
