@@ -69,7 +69,7 @@ export class EmployeeListComponent implements OnInit {
   editEmployee(employee: Employee) {
     console.log(`${JSON.stringify(employee)}`);
     let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
-      data: employee,
+      data: Object.assign({}, employee),
     });
     dialogRef.afterClosed().subscribe((editedEmployee) => {
       if (editedEmployee) {
