@@ -28,6 +28,7 @@
             name="firstName"
             placeholder="Max"
             [readonly]="employeeReadonly"
+            formControlName="firstName"
           />
         </mat-form-field>
         <mat-form-field>
@@ -38,6 +39,7 @@
             name="lastName"
             placeholder="Muster"
             [readonly]="employeeReadonly"
+            formControlName="lastName"
           />
         </mat-form-field>
       </div>
@@ -50,6 +52,7 @@
           name="street"
           placeholder="Cool Street 23"
           [readonly]="employeeReadonly"
+          formControlName="street"
         />
       </mat-form-field>
 
@@ -72,6 +75,7 @@
             [(ngModel)]="employee.city"
             name="city"
             placeholder="City"
+            formControlName="city"
             [readonly]="employeeReadonly"
           />
         </mat-form-field>
@@ -83,6 +87,7 @@
           matInput
           [(ngModel)]="employee.phone"
           placeholder="+49 1111 02313"
+          formControlName="phone"
           [readonly]="employeeReadonly"
         />
       </mat-form-field>

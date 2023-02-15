@@ -10,7 +10,12 @@ import { Employee } from '../Employee';
 import { EmployeeService } from '../employee.service';
 import { MatChipListbox } from '@angular/material/chips';
 import { COMMA, E, ENTER } from '@angular/cdk/keycodes';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-employee-form',
@@ -31,6 +36,11 @@ export class EmployeeFormDialogComponent {
       Validators.pattern('[0-9]{5}'),
       Validators.required,
     ]),
+    firstName: new FormControl(),
+    lastName: new FormControl(),
+    street: new FormControl(),
+    phone: new FormControl(),
+    city: new FormControl(),
   });
 
   constructor(
