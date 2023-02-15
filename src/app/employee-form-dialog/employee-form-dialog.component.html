@@ -1,14 +1,20 @@
-<ng-template mat-dialog-title *ngIf="employeeExists; else createEmployeeText">
-  <ng-template mat-dialog-title *ngIf="employeeReadonly; else editEmployeeText">
-    View Employee
-  </ng-template>
-  <ng-template #editEmployeeText
-    ><h2 mat-dialog-title>Edit Employee</h2></ng-template
-  >
+<ng-template #viewEmployeeTitle>
+  <h2 mat-dialog-title>View Employee</h2>
 </ng-template>
-<ng-template #createEmployeeText
-  ><h2 mat-dialog-title>Create Employee</h2></ng-template
->
+
+<ng-template #editEmployeeTitle>
+  <h2 mat-dialog-title>Edit Employee</h2>
+</ng-template>
+
+<ng-template #createEmployeeTitle>
+  <h2 mat-dialog-title>Create Employee</h2>
+</ng-template>
+
+<ng-container *ngIf="employeeExists; else createEmployeeTitle">
+  <ng-container *ngIf="employeeReadonly; else editEmployeeTitle">
+    <ng-container *ngTemplateOutlet="viewEmployeeTitle"></ng-container>
+  </ng-container>
+</ng-container>
 
 <mat-dialog-content class="mat-typography employee-form-diaglog">
   <div class="form">
@@ -20,7 +26,7 @@
           [(ngModel)]="employee.firstName"
           name="firstName"
           placeholder="Max"
-          readonly
+          [readonly]="employeeReadonly"
         />
       </mat-form-field>
       <mat-form-field>
@@ -30,6 +36,7 @@
           [(ngModel)]="employee.lastName"
           name="lastName"
           placeholder="Muster"
+          [readonly]="employeeReadonly"
         />
       </mat-form-field>
     </div>
@@ -41,6 +48,7 @@
         [(ngModel)]="employee.street"
         name="street"
         placeholder="Cool Street 23"
+        [readonly]="employeeReadonly"
       />
     </mat-form-field>
 
@@ -52,6 +60,7 @@
           [(ngModel)]="employee.postcode"
           name="postcode"
           placeholder="12345"
+          [readonly]="employeeReadonly"
         />
       </mat-form-field>
       <mat-form-field>
@@ -61,6 +70,7 @@
           [(ngModel)]="employee.city"
           name="city"
           placeholder="City"
+          [readonly]="employeeReadonly"
         />
       </mat-form-field>
     </div>
@@ -72,13 +82,19 @@
         [(ngModel)]="employee.phone"
         name="phoneNumber"
         placeholder="+49 1111 02313"
+        [readonly]="employeeReadonly"
       />
     </mat-form-field>
     <div class="employee-form-skills">
       <div class="employee-form-skills-add">
         <mat-form-field class="employee-form-skills-add-name">
           <mat-label>Skill</mat-label>
-          <input matInput [(ngModel)]="newSkill" name="newSkill" />
+          <input
+            matInput
+            [(ngModel)]="newSkill"
+            name="newSkill"
+            [readonly]="employeeReadonly"
+          />
         </mat-form-field>
         <button (click)="addSkill(newSkill)">
           <mat-icon>add</mat-icon>
@@ -111,5 +127,5 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="dialogRef.close()">Cancel</button>
-  <button mat-button (click)="save()">Save</button>
+  <button mat-button *ngIf="!employeeReadonly" (click)="save()">Save</button>
 </mat-dialog-actions>

@@ -54,7 +54,7 @@ export class EmployeeListComponent implements OnInit {
 
   createEmployee() {
     let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
-      data: new Employee(undefined, '', '', '', '', '', '', undefined),
+      data: { employee: new Employee(undefined, '', '', '', '', '', '', undefined), employeeReadonly: false },
     });
     // TODO: find a better way to update after change
 
@@ -70,7 +70,7 @@ export class EmployeeListComponent implements OnInit {
   viewEmployee(employee: Employee) {
     console.log(`${JSON.stringify(employee)}`);
     let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
-      data: employee
+      data: { employee: employee, employeeReadonly: true }
     });
     dialogRef.afterClosed().subscribe((editedEmployee) => {
       if (editedEmployee) {
@@ -84,7 +84,7 @@ export class EmployeeListComponent implements OnInit {
   editEmployee(employee: Employee) {
     console.log(`${JSON.stringify(employee)}`);
     let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
-      data: Object.assign({}, employee),
+      data: { employee: Object.assign({}, employee), employeeReadonly: false },
     });
     dialogRef.afterClosed().subscribe((editedEmployee) => {
       if (editedEmployee) {

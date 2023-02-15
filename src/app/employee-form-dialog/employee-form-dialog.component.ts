@@ -28,12 +28,11 @@ export class EmployeeFormDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
 
-    @Inject(MAT_DIALOG_DATA) data: Employee,
-    @Inject(MAT_DIALOG_DATA) employeeReadonly: boolean = false,
+    @Inject(MAT_DIALOG_DATA) data: any,
     private employeeService: EmployeeService
   ) {
-    this.employee = data;
-    this.employeeReadonly = employeeReadonly;
+    this.employee = data.employee;
+    this.employeeReadonly = data.employeeReadonly;
     this.employeeExists = this.employee.id != undefined;
   }
 
