@@ -7,8 +7,6 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:e2e": "npx cypress run",
-    "test:e2e:ui": "npx cypress open"
   },
   "private": true,
   "dependencies": {
@@ -34,7 +32,6 @@
     "@angular/compiler-cli": "^15.0.4",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
-    "cypress": "^12.3.0",
     "jasmine-core": "~3.10.0",
     "json-server": "^0.17.1",
     "karma": "~6.3.0",
