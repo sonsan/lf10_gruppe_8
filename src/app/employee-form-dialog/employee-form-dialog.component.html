@@ -41,6 +41,9 @@
             [readonly]="employeeReadonly"
             formControlName="lastName"
           />
+          <mat-error *ngIf="employeeForm.get('street')!.hasError('required')">
+            Please enter a Name
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -54,8 +57,11 @@
           [readonly]="employeeReadonly"
           formControlName="street"
         />
-        <mat-error *ngIf="employeeForm.get('street')!.hasError('required')">
-          Street is required
+        <mat-error
+          class="error-text"
+          *ngIf="employeeForm.get('street')!.hasError('required')"
+        >
+          Please enter a Street
         </mat-error>
       </mat-form-field>
 
@@ -70,8 +76,17 @@
             [readonly]="employeeReadonly"
             formControlName="postcode"
           />
-          <mat-error *ngIf="employeeForm.get('postcode')!.hasError('required')">
-            Postcode is required
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('postcode')!.hasError('pattern')"
+          >
+            Postcode needs 5 digits.
+          </mat-error>
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('postcode')!.hasError('required')"
+          >
+            Please enter a postcode
           </mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -84,8 +99,11 @@
             formControlName="city"
             [readonly]="employeeReadonly"
           />
-          <mat-error *ngIf="employeeForm.get('city')!.hasError('required')">
-            City is required
+          <mat-error
+            class="error-text"
+            *ngIf="employeeForm.get('city')!.hasError('required')"
+          >
+            Please enter a city
           </mat-error>
         </mat-form-field>
       </div>
@@ -100,6 +118,10 @@
           [readonly]="employeeReadonly"
         />
       </mat-form-field>
+      <mat-error 
+      class="error-text" *ngIf="employeeForm.get('phone')!.hasError('pattern')">
+        Only digits 0-9,- and spaces allowed
+      </mat-error>
     </div>
   </form>
 
