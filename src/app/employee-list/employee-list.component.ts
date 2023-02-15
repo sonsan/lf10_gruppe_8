@@ -69,18 +69,20 @@ export class EmployeeListComponent implements OnInit {
   }
 
   viewEmployee(employee: Employee) {
-    let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
-      data: {
-        employee: this.employeeService.getEmployee(employee.id!),
-        employeeReadonly: true,
-      },
-    });
-    dialogRef.afterClosed().subscribe((editedEmployee) => {
-      if (editedEmployee) {
-        let index = this.employees.findIndex((e) => e.id === employee.id);
-        this.employees.splice(index, 1, editedEmployee);
-        this.dataSourceSetup();
-      }
+    this.employeeService.getEmployee(employee.id!).subscribe((emp) => {
+      let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
+        data: {
+          employee: emp,
+          employeeReadonly: true,
+        },
+      });
+      dialogRef.afterClosed().subscribe((editedEmployee) => {
+        if (editedEmployee) {
+          let index = this.employees.findIndex((e) => e.id === employee.id);
+          this.employees.splice(index, 1, editedEmployee);
+          this.dataSourceSetup();
+        }
+      });
     });
   }
 
