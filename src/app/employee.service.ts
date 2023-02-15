@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Employee } from './Employee';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Skill } from './Skill';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +16,6 @@ export class EmployeeService {
    */
   addEmployee(employee: Employee): Observable<Employee> {
     console.log(`Adding ${JSON.stringify(employee)} to backend`);
-
-    if (employee.skillSet == undefined) {
-      employee.skillSet = [''];
-    }
     return this.http.post<Employee>('/backend/employees', employee, {
       headers: this.getHeaders(),
     });
@@ -74,54 +69,6 @@ export class EmployeeService {
     return this.http.get<Employee[]>('/backend/employees', {
       headers: this.getHeaders(),
     });
-  }
-
-  /**
-   * Add a qualification for the employee.
-   * @param {Employee} employee the employee to give the qualification
-   * @param {Skill} skill the qualification to give the employee.
-   * @note Currently not supported by the backend.
-   */
-  addEmployeeQualification(
-    employee: Employee,
-    skill: Skill
-  ): Observable<Employee> {
-    return this.http.post<Employee>(
-      `/backend/employees/${employee.id}/`,
-      skill,
-      {
-        headers: this.getHeaders(),
-      }
-    );
-  }
-
-  /**
-   * Remove the skill from the backend.
-   * @param {Skill} skill the skill to delete.
-   */
-  removeEmployeeQualification(skill: Skill): Observable<Employee> {
-    return this.http.delete<Employee>(
-      `/backend/employees/${skill.designation}/qualifications`,
-      {
-        headers: this.getHeaders(),
-      }
-    );
-  }
-
-  /**
-   * Get all employees who have a specified skill.
-   * @param {Skill} skill the skill with which to search.
-   * @returns {Employee} list of all employees with the skill.
-   */
-  getEmployeesWithSkill(skill: Skill): Observable<Employee[]> {
-    return this.http
-      .get<Employee[]>(
-        `/backend/qualifications/${skill.designation}/employees`,
-        {
-          headers: this.getHeaders(),
-        }
-      )
-      .pipe(map((resp: any) => resp.employees));
   }
 
   private getHeaders(): HttpHeaders {

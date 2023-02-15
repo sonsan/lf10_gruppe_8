@@ -10,6 +10,7 @@ import { Employee } from '../Employee';
 import { EmployeeService } from '../employee.service';
 import { MatChipListbox } from '@angular/material/chips';
 import { COMMA, E, ENTER } from '@angular/cdk/keycodes';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-form',
@@ -24,6 +25,8 @@ export class EmployeeFormDialogComponent {
   newSkill: string = '';
   chipList: MatChipListbox | undefined;
   saving: boolean = false;
+  postcodeValid: boolean = false;
+  employeeForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeFormDialogComponent>,
@@ -34,6 +37,12 @@ export class EmployeeFormDialogComponent {
     this.employee = data.employee;
     this.employeeReadonly = data.employeeReadonly;
     this.employeeExists = this.employee.id != undefined;
+    this.employeeForm = new FormGroup({
+      postcode: new FormControl(this.employee.postcode, [
+        Validators.pattern('[0-9]{5}'),
+        Validators.required,
+      ]),
+    });
   }
 
   save() {
@@ -53,24 +62,5 @@ export class EmployeeFormDialogComponent {
           this.dialogRef.close(createdEmployee);
         });
     }
-  }
-
-  removeSkill(skill: string) {
-    if (!this.employee.skillSet) {
-      return;
-    }
-    const skillIndex = this.employee.skillSet.indexOf(skill);
-    if (!skillIndex) {
-      return;
-    }
-
-    if (skillIndex >= 0) {
-      this.employee.skillSet.splice(skillIndex, 1);
-    }
-  }
-
-  addSkill(skill: string): void {
-    this.employee.skillSet?.push(skill);
-    this.newSkill = '';
   }
 }

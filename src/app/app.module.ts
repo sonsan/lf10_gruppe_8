@@ -10,7 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
@@ -44,6 +44,7 @@ import { EmployeeFormDialogComponent } from './employee-form-dialog/employee-for
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatTableModule,
     MatIconModule,
     MatChipsModule,

@@ -17,109 +17,77 @@
 </ng-container>
 
 <mat-dialog-content class="mat-typography employee-form-diaglog">
-  <div class="form">
-    <div class="form-group">
-      <mat-form-field>
-        <mat-label>First Name</mat-label>
-        <input
-          matInput
-          [(ngModel)]="employee.firstName"
-          name="firstName"
-          placeholder="Max"
-          [readonly]="employeeReadonly"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Last Name</mat-label>
-        <input
-          matInput
-          [(ngModel)]="employee.lastName"
-          name="lastName"
-          placeholder="Muster"
-          [readonly]="employeeReadonly"
-        />
-      </mat-form-field>
-    </div>
-
-    <mat-form-field>
-      <mat-label>Street</mat-label>
-      <input
-        matInput
-        [(ngModel)]="employee.street"
-        name="street"
-        placeholder="Cool Street 23"
-        [readonly]="employeeReadonly"
-      />
-    </mat-form-field>
-
-    <div class="form-group">
-      <mat-form-field>
-        <mat-label>Postcode</mat-label>
-        <input
-          matInput
-          pattern="^\d{5}$"
-          [(ngModel)]="employee.postcode"
-          name="postcode"
-          placeholder="12345"
-          [readonly]="employeeReadonly"
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>City</mat-label>
-        <input
-          matInput
-          [(ngModel)]="employee.city"
-          name="city"
-          placeholder="City"
-          [readonly]="employeeReadonly"
-        />
-      </mat-form-field>
-    </div>
-
-    <mat-form-field>
-      <mat-label>Phone #</mat-label>
-      <input
-        matInput
-        [(ngModel)]="employee.phone"
-        name="phoneNumber"
-        placeholder="+49 1111 02313"
-        [readonly]="employeeReadonly"
-      />
-    </mat-form-field>
-    <div class="employee-form-skills">
-      <div class="employee-form-skills-add">
-        <mat-form-field class="employee-form-skills-add-name">
-          <mat-label>Skill</mat-label>
+  <form [formGroup]="employeeForm">
+    <div class="form">
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
           <input
             matInput
-            [(ngModel)]="newSkill"
-            name="newSkill"
+            [(ngModel)]="employee.firstName"
+            name="firstName"
+            placeholder="Max"
             [readonly]="employeeReadonly"
           />
         </mat-form-field>
-        <button (click)="addSkill(newSkill)">
-          <mat-icon>add</mat-icon>
-        </button>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            [(ngModel)]="employee.lastName"
+            name="lastName"
+            placeholder="Muster"
+            [readonly]="employeeReadonly"
+          />
+        </mat-form-field>
       </div>
 
-      <div class="employee-form-skills-list">
-        <div *ngFor="let skill of employee.skillSet | slice : 1">
-          <div *ngIf="skill.length > 0">
-            <mat-chip [selectable]="true" (removed)="removeSkill(skill)">
-              <div *ngIf="skill.length > 8; else tooShort">
-                {{ skill.substring(0, 8) + '...' }}
-              </div>
-              <ng-template #tooShort>
-                {{ skill }}
-              </ng-template>
+      <mat-form-field>
+        <mat-label>Street</mat-label>
+        <input
+          matInput
+          [(ngModel)]="employee.street"
+          name="street"
+          placeholder="Cool Street 23"
+          [readonly]="employeeReadonly"
+        />
+      </mat-form-field>
 
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-          </div>
-        </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Postcode</mat-label>
+          <input
+            matInput
+            [(ngModel)]="employee.postcode"
+            name="postcode"
+            placeholder="12345"
+            [readonly]="employeeReadonly"
+            formControlName="postcode"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            [(ngModel)]="employee.city"
+            name="city"
+            placeholder="City"
+            [readonly]="employeeReadonly"
+          />
+        </mat-form-field>
       </div>
+
+      <mat-form-field>
+        <mat-label>Phone #</mat-label>
+        <input
+          matInput
+          [(ngModel)]="employee.phone"
+          placeholder="+49 1111 02313"
+          [readonly]="employeeReadonly"
+        />
+      </mat-form-field>
     </div>
-  </div>
+  </form>
 
   <div *ngIf="saving">
     <mat-spinner></mat-spinner>
@@ -128,5 +96,12 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="dialogRef.close()">Cancel</button>
-  <button mat-button *ngIf="!employeeReadonly" (click)="save()">Save</button>
+  <button
+    mat-button
+    *ngIf="!employeeReadonly"
+    [disabled]="!employeeForm.valid"
+    (click)="save()"
+  >
+    Save
+  </button>
 </mat-dialog-actions>

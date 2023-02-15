@@ -54,7 +54,7 @@ export class EmployeeListComponent implements OnInit {
   createEmployee() {
     let dialogRef = this.dialog.open(EmployeeFormDialogComponent, {
       data: {
-        employee: new Employee(undefined, '', '', '', '', '', '', undefined),
+        employee: new Employee(undefined, '', '', '', '', '', ''),
         employeeReadonly: false,
       },
     });
